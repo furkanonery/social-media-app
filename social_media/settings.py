@@ -37,9 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     '_profiles.apps.ProfilesConfig',
     'rest_framework',
     'django_extensions',
+
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+
 ]
 
 MIDDLEWARE = [
@@ -134,3 +139,10 @@ MEDIA_ROOT = 'uploads'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication', # token'larla istek yapacak
+        'rest_framework.authentication.SessionAuthentication', # browsable api sayfasında ihtiyaç olacak
+    ]
+}
