@@ -45,7 +45,19 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'dj_rest_auth',
 
+    # registration işlemleri için gerekli
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+
 ]
+
+SITE_ID = 1
+
+ACCOUNT_EMAIL_VERIFICATION = 'none' # kayıt esnasında mail onayı istiyor musunuz
+ACCOUNT_EMAIL_REQUIRED = (True,) # kayıt esnasında kullanıcı email adresi vermeli mi
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
