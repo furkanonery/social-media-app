@@ -37,10 +37,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     '_profiles.apps.ProfilesConfig',
     'rest_framework',
     'django_extensions',
+
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+
+    # registration işlemleri için gerekli
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+
 ]
+
+SITE_ID = 1
+
+ACCOUNT_EMAIL_VERIFICATION = 'none' # kayıt esnasında mail onayı istiyor musunuz
+ACCOUNT_EMAIL_REQUIRED = (True,) # kayıt esnasında kullanıcı email adresi vermeli mi
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -134,3 +151,10 @@ MEDIA_ROOT = 'uploads'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication', # token'larla istek yapacak
+        'rest_framework.authentication.SessionAuthentication', # browsable api sayfasında ihtiyaç olacak
+    ]
+}
