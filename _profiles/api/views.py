@@ -1,8 +1,8 @@
-# from rest_framework import generics
+from rest_framework import generics
 from rest_framework.viewsets import ReadOnlyModelViewSet, GenericViewSet, ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from _profiles.models import Profile, ProfileStatus 
-from _profiles.api.serializers import ProfileSerializer, ProfilStatusSerializer
+from _profiles.api.serializers import ProfileSerializer, ProfilStatusSerializer, ProfilePhotoSerializer
 from rest_framework import mixins
 from _profiles.api.permissions import ownProfileOrReadOnly, ownProfileStatusOrReadOnly
 
@@ -31,4 +31,11 @@ class ProfileStatusViewSet(ModelViewSet):
         
         serializer.save(user_profile_id = self.request.user.id)
 
+class ProfilePhotoUpdateView(generics.UpdateAPIView):
     
+    serializer_class = ProfilePhotoSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        profile_object = self.request.user.profile
+        return profile_object

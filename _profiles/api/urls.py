@@ -16,4 +16,5 @@ urlpatterns = [
     # path('user-profiles/<int:pk>', profile_detail, name='profile-detail'),
 
     path('',include(router.urls)),
+    path('profile_photo/',views.ProfilePhotoUpdateView.as_view(),name='profile-photo'),
 ]
